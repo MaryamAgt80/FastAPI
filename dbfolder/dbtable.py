@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-engine=create_engine("sqlite:///fastapidb.db",connect_args={'check_same_thread':False})
+engine=create_engine("sqlite:///restdatabase.db",connect_args={'check_same_thread':False})
 Base=declarative_base()
 
 
