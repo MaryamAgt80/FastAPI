@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends
 from pydantic import BaseModel
-from typing import Optional ,List
+from typing import Optional ,List,Annotated
 from dbfolder import schema
 from dbfolder.dbtable import get_db
-
+##from auth.athutication import auth_schema
 router = APIRouter(prefix='/articales', tags=['articales'])
 
 

@@ -12,6 +12,6 @@ class blog(BaseModel):
 
 
 @router.post('/new')
-def create_blog(myblog:blog,commentid:int=Query(None,title='comment id',description='enter your comment',alias='ایدی کامنت',deprecated=True), username: str = Body(Ellipsis)):
+def create_blog(myblog:blog,commentid:int=Query(None,title='comment id',description='enter your comment',alias='ایدی کامنت',deprecated=True), username: str = Body(Ellipsis),):
     return {'message':'post',
             'blog':myblog,'comment':commentid}
