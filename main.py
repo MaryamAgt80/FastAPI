@@ -6,6 +6,8 @@ from dbfolder import schema
 from dbfolder.exception import EMAILINVALID, USEREXIST, FIELDSISNULL
 from fastapi.responses import JSONResponse
 from auth import auth2
+from file import func_file
+from fastapi.staticfiles import StaticFiles
 app = FastAPI()
 schema.Base.metadata.create_all(engine)
 app.include_router(blog_get.router)
@@ -15,8 +17,8 @@ app.include_router(articales.router)
 
 app.include_router(products_responce.router)
 app.include_router(auth2.router)
-
-
+app.include_router(func_file.router)
+app.mount('/files',StaticFiles(directory='files'),name='files')
 @app.get('/', tags=['mainblog', 'blog'])
 def hello():
     return ('hello word')
