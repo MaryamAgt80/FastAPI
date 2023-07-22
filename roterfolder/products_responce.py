@@ -48,7 +48,6 @@ def get_product(id: int):
 #
 # def all_productss(coustom_header:str=Header(None)):
 #     data = products
-#     print(coustom_header)
 #     #response = Response(content=data, media_type='text/plain')
 #     #response.headers['username'] = coustom_header
 #     return {'data':products,'header':coustom_header}
@@ -68,7 +67,7 @@ def get_hedband(custom_header2: str = Header(None)):
 @router.get('cook')
 def get_showcook(sithation: str = Cookie(None)):
     response = Response(content=sithation, media_type='text/plain')
-    print(sithation)
+
     return response
 
 

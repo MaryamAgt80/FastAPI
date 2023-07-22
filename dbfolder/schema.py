@@ -1,10 +1,9 @@
-from sqlalchemy import Column, Integer, String, update, ForeignKey
+from sqlalchemy import Column, String, ForeignKey
 from dbfolder.dbtable import Base, get_db
-from dbfolder.hashpass import changepasshash
 from pydantic import BaseModel
 from typing import Optional, List
 from sqlalchemy.orm import Session, relationship, Mapped, mapped_column
-from dbfolder.hashpass import changepasshash
+from dbfolder.hashpass import get_password_hash
 from fastapi import status
 from fastapi.exceptions import HTTPException
 from dbfolder.exception import EMAILINVALID , USEREXIST ,FIELDSISNULL
@@ -43,7 +42,7 @@ def create_user(request: usermodel, DB: Session):
         raise FIELDSISNULL('fileds is null')
     User = user(name=request.name,
                 email=request.email,
-                password=changepasshash(request.password))
+                password=get_password_hash(request.password))
     DB.add(User)
     DB.commit()
     DB.refresh(User)
@@ -79,7 +78,7 @@ def user_update(id, DB: Session, request: usermodel):
     User.update({
         user.name: request.name,
         user.email: request.email,
-        user.password: changepasshash(request.password)
+        user.password: get_password_hash(request.password)
     })
     DB.commit()
     return 'ok'
